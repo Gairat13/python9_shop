@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Category</title>
+</head>
+<body>
+    <h1>Добро пожаловать в наш  магазин</h1>
+
+    <h2>Категории</h2>
+    {% for category in categories %}
+        <p><a href="{% url 'products-list' category.slug %}">{{ category.title }}</p>
+    {% endfor %}
+</body>
+</html>
