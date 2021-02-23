@@ -46,9 +46,15 @@ class User(AbstractBaseUser):
     def has_module_perms(self, app_label):
         return self.is_staff
 
-    # TODO: отображение продуктов и категорий +
-    # TODO: регистрация, Активация, Логин +
-    # TODO: Загрузка и отображение картинок
+    def create_activation_code(self):
+        from django.utils.crypto import get_random_string
+        code = get_random_string(15)
+        if User.objects.filter(activation_code=code).exists():
+            self.create_activation_code()
+        self.activation_code = code
+        self.save(update_fields=['activation_code'])
+
+    # TODO: регистрация, Активация, Логин
     # TODO: формы
     # TODO: CRUD
     # TODO: поиск и фильтрация
