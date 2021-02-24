@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'includes/base.html' %}
+{% block title %}List of Products{% endblock title %}
+{% block body %}
     {% for product in products %}
-    <h3> <a href="{% url 'product-details' product.id %}">{{product.title}}</a> </h3>
+    <a href="{% url 'product-details' product.id %}">{{ product.title }}</a>
     {% endfor %}
-</body>
-</html>
+{% endblock body %}

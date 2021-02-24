@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Category</title>
-</head>
-<body>
-    <h1>Добро пожаловать в наш  магазин</h1>
-    <p><a href="{% url 'registration' %}">Регистрация</a></p>
+{% extends 'includes/base.html' %}
+{% block title %}Shop{% endblock title %}
+{% block body %}
+    <h1>Welcome to our grocery shop!</h1>
 
-    <h2>Категории</h2>
+    <h2>Categories:</h2>
     {% for category in categories %}
         <p><a href="{% url 'products-list' category.slug %}">{{ category.title }}</a></p>
     {% endfor %}
-</body>
-</html>
+{% endblock body %}
