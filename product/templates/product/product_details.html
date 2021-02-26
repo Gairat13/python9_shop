@@ -1,11 +1,16 @@
 {% extends 'includes/base.html' %}
 {% block title %}{{ product.title }}{% endblock title %}
 {% block body %}
-<p>{{ product.id }}</p>
-<P>{{ product.name }}</P>
-<p>{{ description }}</p>
-<p>{{ product.price }}</p>
-{% for image in product.images.all %}
-<img src="{{ image.get_image_url }}" width="100",height="100">
-{% endfor %}
+    <p>{{ product.id }}</p>
+    <P>{{ product.name }}</P>
+    <p>{{ description }}</p>
+    <p>{{ product.price }}</p>
+    {% for image in product.images.all %}
+        {% if image.image %}
+            <img src="{{ image.get_image_url }}" width="100" height="100">
+        {% endif %}
+    {% endfor %}
+
+    <a href="{% url 'edit-product' product.id %}"><button type="button">Edit</button></a>
+    <a href="{% url 'delete-product' product.id %}" role="button">Delete</a>
 {% endblock body%}

@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Активация</title>
-</head>
-<body>
+{% extends 'auth_base.html' %}
+{% block title %} {% endblock title%}
+{% block body %}
     <h1> Ваш аккаунт успешно активирован</h1>
     <p> Для того чтобы войти в свой аккаунт пройдите по <a href="{% url 'login' %}">ссылке</a></p>
-</body>
-</html>
+{% endblock body %}

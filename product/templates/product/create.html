@@ -4,6 +4,10 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    {{ formset.management_form }}
+    {% for image_form in formset %}
+        {{ image_form }}
+    {% endfor %}
     <button type="submit">Crete</button>
 </form>
-{% endblock body}
+{% endblock body%}

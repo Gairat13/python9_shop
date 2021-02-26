@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.urls import reverse_lazy
+from pytils.translit import slugify
 
 class Category(models.Model):
     title = models.CharField(max_length=50, unique=True)
@@ -7,6 +8,12 @@ class Category(models.Model):
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        super().save(*args, **kwargs)
 
 
 class Product(models.Model):
@@ -18,6 +25,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse_lazy('product-details', kwargs={'pk': self.pk})
 
 
 class ProductImage(models.Model):

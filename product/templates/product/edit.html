@@ -4,6 +4,13 @@
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    {{ formset.management_form }}
+    <table>
+        {% for image_form in formset %}
+        {{ image_form.as_table }}
+        {% endfor %}
+    </table>
+
     <button type="submit">Save</button>
 </form>
-{% endblock body}
+{% endblock body %}
